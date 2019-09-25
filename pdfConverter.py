@@ -15,7 +15,7 @@ def pdf_to_text(path):
     manager = PDFResourceManager()
     retstr = BytesIO()
     layout = LAParams(line_margin = 0.1, all_texts=True)
-    device = TextConverter(manager, retstr, laparams=layout)
+    #device = TextConverter(manager, retstr, laparams=layout)
     device = TextConverter(manager, retstr)
     filepath = open(path, 'rb')
     interpreter = PDFPageInterpreter(manager, device)
@@ -35,4 +35,5 @@ if __name__ == "__main__":
     file_pdf = [i for i in os.listdir() if i.endswith('.pdf')] 
     for file in file_pdf:
         text = pdf_to_text(file)
-        print(text)
+        filename = file[:-4] +'.txt'
+        print(text,file = open(filename, 'w+'))
