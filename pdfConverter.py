@@ -9,6 +9,7 @@ from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
 from io import BytesIO
+import os
 
 def pdf_to_text(path):
     manager = PDFResourceManager()
@@ -31,5 +32,7 @@ def pdf_to_text(path):
 
 
 if __name__ == "__main__":
-    text = pdf_to_text("TLXI-MAXS0300-201906-01-IN.pdf")
-    print(text)
+    file_pdf = [i for i in os.listdir() if i.endswith('.pdf')] 
+    for file in file_pdf:
+        text = pdf_to_text(file)
+        print(text)
